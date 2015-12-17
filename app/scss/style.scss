@@ -1,0 +1,67 @@
+@import "reset";
+
+@import 'px2rem';
+
+$designWidth: 750;
+
+.g-header,.g-footer {
+  width: px2rem(750);
+  height: px2rem(88);
+  line-height: px2rem(88);
+  background-color: #f50057;
+  text-align: center;
+  font-size: px2rem(48);
+  color: rgba(255,255,255,1);
+}
+.g-content {
+  width: px2rem(750);
+  margin: px2rem(10) 0;
+  padding: px2rem(30);
+  background-color: #ff80ab;
+  color: #f0f0f0;
+  font-size: px2rem(36);
+  line-height: 1.7;
+  max-height: 90%;
+}
+.m-demo-list {
+  li {
+    border-bottom: 1px solid #FD4888;
+  }
+  a {
+    display: flex;
+    width: px2rem(690);
+    color: #fff;
+    position: relative;
+    &::after {
+      position: absolute;
+      content: ">";
+      right: 0;top: 0;
+    }
+  }
+}
+
+/*modal*/
+.m-modal {
+  width: px2rem(750);
+  padding: px2rem(30);
+}
+.m-modal-btn {
+  display:-webkit-box;
+  -webkit-box-orient:horizontal;
+  -webkit-box-pack:justify;
+  -webkit-box-align:justify;
+  .u-btn {
+    width: px2rem(240);
+    height: px2rem(76);
+    text-align: center;
+    line-height: px2rem(76);
+    color: #fff;
+    font-size: px2rem(34);
+    border-radius: px2rem(9);
+    background-color: #fcb533;
+  }
+}
+
+
+
+
