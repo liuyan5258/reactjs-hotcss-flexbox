@@ -6,3 +6,4 @@ bower_components
 .ftppass
 .sshpass
 .developer
+npm-debug.log

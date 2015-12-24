@@ -4,6 +4,7 @@
 
 $designWidth: 750;
 
+/*布局*/
 .g-header,.g-footer {
   width: px2rem(750);
   height: px2rem(88);
@@ -23,6 +24,24 @@ $designWidth: 750;
   line-height: 1.7;
   max-height: 90%;
 }
+/*布局 end*/
+
+/*元件*/
+@mixin uBtn{
+  .u-btn{
+    width: px2rem(240);
+    height: px2rem(76);
+    text-align: center;
+    line-height: px2rem(76);
+    color: #fff;
+    font-size: px2rem(34);
+    border-radius: px2rem(9);
+    background-color: #fcb533;
+  }
+}
+/*元件 end*/
+
+/*模块*/
 .m-demo-list {
   li {
     border-bottom: 1px solid #FD4888;
@@ -50,15 +69,79 @@ $designWidth: 750;
   -webkit-box-orient:horizontal;
   -webkit-box-pack:justify;
   -webkit-box-align:justify;
-  .u-btn {
-    width: px2rem(240);
-    height: px2rem(76);
+  @include uBtn;
+}
+/*modal component*/
+.modal{
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: none;
+  opacity: 0;
+  z-index: 10;
+  text-align: center;
+  background-color: rgba(0,0,0,.5);
+  -webkit-backdrop-filter: saturate(180%) blur(px2rem(20));
+  // transition: opacity .2s ease-in-out;
+  &.active{
+    display: block;
+    animation: show .2s ease-in-out;
+    opacity: 1;
+  }
+  &.hide{
+    display: none;
+    animation: hide .2s ease-in-out;
+ }
+}
+
+@-webkit-keyframes show{
+  0%{
+    display: block !important;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes hide{
+  0%{
+    display: block !important;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.modal .content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  cursor: pointer;
+}
+.m-modal-box{
+  background: #fff;
+  width: px2rem(715);
+  min-height: px2rem(350);
+  padding-bottom: 1px;
+  p{
+    width: px2rem(715);
     text-align: center;
-    line-height: px2rem(76);
-    color: #fff;
-    font-size: px2rem(34);
-    border-radius: px2rem(9);
-    background-color: #fcb533;
+    padding: px2rem(50) 0;
+  }
+  .close{
+    width: px2rem(91); 
+    height: px2rem(91);
+    margin: 0 auto px2rem(56);
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFsAAABbCAMAAAAr6AmrAAAAA3NCSVQICAjb4U/gAAAAsVBMVEVwcHDDw8OZmZnp6emDg4Ovr6/X19eNjY1zc3OkpKS3t7fMzMzj4+Pz8/N7e3vf39+7u7unp6eTk5PS0tKdnZ3t7e2GhoaAgIDBwcGxsbHGxsarq6uZmZnn5+fZ2dn19fWzs7N0dHShoaHw8PDHx8eLi4vV1dWFhYW5ubmlpaXv7+9/f3/r6+uPj4+fn5/l5eV2dnatra29vb21tbWpqanh4eGJiYnT09Pb29vJycmWlpZ+FNdAAAAAO3RSTlP/////////////////////////////////////////AP///////////////////////////////////x8BdJgAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzbovLKMAAADI0lEQVRogb2a23aqMBCGBwSt0Kj1UHWzcJRWWatbay+qbnz/B9vEEwchmSDxv2px8hlgMpnMCEgR27lO0LIWsLBagePuGGkUSC1G7jGcHvwEx/zDNDy6o0fZ/q81aRR+0phYv351NuvtI9Hds2jfE31ezl6bw+IZp9UYmmtl9ocZfEjJJ8O2WWZYwrZNmitwMdNWYM/GXTKZqzv+R2UHjhKZywlI7JHipM/q/r339zv2alOBzLVZydiGVxGN6BlitjOpjEac5N5Tlu1FD6ARo+xNZ9jOY+gYPi9jG/kHpq4MIsVuliwvJdnNIvaoXwMasZ/4ecIOa0GnOTd2sK2J7d+W/5U9U48hZXJmOXZdTyTNurDtup4I19ZOs7+GNaIRh18ptsIuQxEzE/a6evArlre+sWue9nXinM2KNqTHFLALuyfPQ1TVcC7sOn37KuvM9oVRuzRtKs+nuKLdif0msnmFkshrw6toHGuf2JZwAi3oFV3uQUs4jFMhTnbFRmNw7y+6MBaPQqMRsw2Zl3TgLhnqQkcyCBtGzJbmOuwFcjnTCF7kq20Ts+Ue6OdQ8ZdJTgxcIQKbys2a2UfQgWaZZUpThN2BYPcH3pN/3uGTMAQPPriE2+Mud7z+eSx2yjv5A5jTYuAbXLaPbxCutUTMAWoMPJ4XqJ3cgEyBbHkl2kOcjxmwpNrjUrq+Eo2h2VQwj+1/6MY/oGKNC5Af6G8aAAwU2EozUZ63zudN9pPl2U/I9vEAnf6tui6HCutSZzzpUuJglI2DpONcHAfZXG5WNX7r3HdI+2Uuz1lT90ud+7zO/ERnXqUnH8RzPugX3HOi0rchfk2XPFZn/q313KDzvKPznKb1fKnzXKz1PF9vHcLP1CG01k+01n0wIO2bBN3Xq7TW2bTWB2uqa6aq4E+qx2qtI2utfz9at8+lUU/sNyCuqrpiX9onif3cqrJCfYvQ30GdfalYs1At5G7DWdHlp/cBkfcvPSLdU+1fIu+7BoS+a1Ch78rFHEu8TiPLqdYvPqnbFvS525JmJKE/H/UL+vP96OH+/BV3/l0BAFitb/LvCv4D+hbRQmnyGMoAAAAASUVORK5CYII=');
+    cursor: pointer;
+    background-size: cover;
+  }
+  @include uBtn;
+  .btn-box{
+    display: flex;
+    justify-content: space-around;
   }
 }
 
