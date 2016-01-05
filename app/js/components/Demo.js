@@ -7,7 +7,7 @@ export default class Demo extends React.Component {
       <div className="g-content">
         <ul className="m-demo-list">
           <li><Link to="/modals">modals</Link></li>
-          <li>tabs</li>
+          <li><Link to="/slider">slider</Link></li>
           <li>buttons</li>
         </ul>
       </div>
