@@ -21,7 +21,7 @@ if(month < 10){
   month = '0' + month
 }
 var version = now.getFullYear() + '' + month + now.getDate() + '-' + now.getHours() + '' + now.getMinutes() + '-' + now.getSeconds()
-var prefix =  'http://img' + (Math.floor(Math.random() * 6) + 1) + '.cache.netease.com/utf8/3g/headline_game/'
+var prefix =  'http://img' + (Math.floor(Math.random() * 6) + 1) + '.cache.xxxxxx.com/utf8/3g/headline_game/'
 
 var sassTask = function(options){
   return sass('./app/scss/style.scss')
